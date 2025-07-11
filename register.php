@@ -34,6 +34,11 @@
                         <input type="password" name="password" class="form-control" id="password" required>
                     </div>
 
+                    <div class="cold-md-6 mb-3">
+                        <label for="Total Hours" class="form-label">Internship Total Hours</label>
+                        <input type="text" name="total_hours" class="form-control" id="total_hours" required>                        
+                    </div>
+
                     <div class="col-md-12 mb-4">
                         <label for="profile" class="form-label">Profile Picture</label>
                         <input type="file" name="profile" class="form-control" id="profile" accept="image/*" required>

@@ -8,7 +8,7 @@ include '../components/config.php';
         $password = md5(trim($_POST['password']));
 
         //perform query
-        $query = "SELECT user_id, name, course, role FROM users WHERE email = ? AND password = ? ";
+        $query = "SELECT user_id, name, course, role, profile, internship_hours FROM users WHERE email = ? AND password = ? ";
         $stmt = mysqli_prepare($con, $query);
 
         if($stmt){
@@ -23,12 +23,14 @@ include '../components/config.php';
                 $_SESSION['name'] = $row['name'];
                 $_SESSION['course'] = $row['course'];
                 $_SESSION['role'] = $row['role'];
+                $_SESSION['internship_hours'] = $row['internship_hours'];
+                $_SESSION['profile'] = $user['profile'];
                 
                 //redirect based on role column
                 if($row['role'] === 'admin'){
                     header('location: ../admin/home.php ');
                 }else{  
-                    header('location: ../home.php');
+                    header('location: ../pages/home.php');
                 }
                 exit();
             }else{

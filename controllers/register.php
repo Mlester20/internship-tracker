@@ -9,6 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $con->real_escape_string($_POST['email']);
     $password = $con->real_escape_string(md5($_POST['password']));
     $role = 'user'; 
+    $total_hours = $con->real_escape_string($_POST['total_hours']);
 
     if (isset($_FILES['profile']) && $_FILES['profile']['error'] === 0) {
         $allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
@@ -23,12 +24,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (move_uploaded_file($_FILES['profile']['tmp_name'], $targetPath)) {
                 $dbProfilePath = '../uploads/' . $uniqueName;
 
-                $sql = "INSERT INTO users (name, course, profile, email, password, role)
-                        VALUES ('$name', '$course', '$dbProfilePath', '$email', '$password', '$role')";
+                $sql = "INSERT INTO users (name, course, profile, email, password, role, internship_hours)
+                        VALUES ('$name', '$course', '$dbProfilePath', '$email', '$password', '$role', '$total_hours')";
 
                 if ($con->query($sql) === TRUE) {
-                    echo "User registered successfully.";
-                    header('location: ../index.php');
+                    echo "<script type='text/javascript'>alert('Registered Successfully!');
+                    document.location='../index.php'</script>";                     
                 } else {
                     echo "Database Error: " . $con->error;
                 }

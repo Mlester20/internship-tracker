@@ -46,7 +46,7 @@ session_destroy();
     <script>
         // Redirect to the index page after 2 seconds
         setTimeout(() => {
-            window.location.href = 'index.php';
+            window.location.href = '../index.php';
         }, 2000);
     </script>
 </body>
